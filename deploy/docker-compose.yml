@@ -1,0 +1,15 @@
+services:
+  streamforge:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    ports:
+      - "127.0.0.1:9092:9092"
+      - "127.0.0.1:9093:9093"
+    volumes:
+      - streamforge_data:/data
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+volumes:
+  streamforge_data:

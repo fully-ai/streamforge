@@ -1,0 +1,10 @@
+# Binaries & data
+bin/
+data/
+*.log
+*.index
+coverage.out
+.env
+*.pem
+*.key
+.DS_Store

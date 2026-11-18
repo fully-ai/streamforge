@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StreamForge — Distributed Event Streaming Console</title>
+  <style>
+    :root { --bg:#070b14; --panel:#0d1424; --border:#1e293b; --text:#e2e8f0; --muted:#94a3b8; --accent:#38bdf8; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Inter,system-ui,sans-serif; background:var(--bg); color:var(--text); padding:22px; }
+    .hdr { display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px; margin-bottom:16px; }
+    .card { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:16px; margin-bottom:14px; }
+    .kpi { font-size:26px; font-weight:800; margin-top:4px; color:var(--accent); }
+    input, button { padding:8px 10px; border-radius:8px; border:1px solid var(--border); background:#111b2e; color:var(--text); }
+    button { background:#0284c7; color:#fff; cursor:pointer; font-weight:600; }
+    table { width:100%; border-collapse:collapse; margin-top:8px; }
+    th, td { text-align:left; padding:8px; border-bottom:1px solid var(--border); font-size:13px; }
+    th { color:var(--muted); font-size:11px; text-transform:uppercase; }
+  </style>
+</head>
+<body>
+  <div class="hdr">
+    <div><h1 style="margin:0">StreamForge Control Plane</h1><small style="color:var(--muted)">Segmented Commit-Log Broker · Consumer Groups · Schema Registry · Stream DSL</small></div>
+    <button id="refresh">Refresh Cluster</button>
+  </div>
+  <div class="grid" id="kpis"></div>
+  <div class="card">
+    <h3>Create Topic &amp; Produce Event</h3>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <input id="tname" placeholder="topic name (e.g. orders)" />
+      <input id="tparts" type="number" value="3" style="width:80px" />
+      <button id="create-topic">Create Topic</button>
+      <input id="pkey" placeholder="key" />
+      <input id="pval" placeholder='{"amount":250,"region":"eu"}' style="flex:1" />
+      <button id="produce">Produce</button>
+    </div>
+  </div>
+  <div class="card"><h3>Topics &amp; Partition Offsets</h3><div id="topics-tbl"></div></div>
+  <div class="card"><h3>Consumer Groups &amp; Offset Lag</h3><div id="groups-tbl"></div></div>
+  <div class="card"><h3>Schema Registry Subjects</h3><pre id="schemas-pre" style="white-space:pre-wrap"></pre></div>
+  <script src="/app.js"></script>
+</body>
+</html>
